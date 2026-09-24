@@ -677,6 +677,8 @@ def module_get_import(text=''):
             next_imp = imp[fro.start() + cur_end:].strip()
             # get all ASN.1 objects reference before FROM
             obj = imp[:fro.start()].strip()
+            if obj.endswith(','):
+                raise(ASN1ProcTextErr('[proc] IMPORTS has trailing comma before FROM'))
             # clean them up and split them to a list
             obj = map(strip, re.sub(r'\s{1,}', ' ', obj).split(','))
             # remove {} at the end of parameterized objects

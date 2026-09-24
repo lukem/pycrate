@@ -165,6 +165,19 @@ class TestPycrate(unittest.TestCase):
         with open('./test/res/Imports.asn', 'r') as fd:
             asntext = fd.read()
         compile_text(asntext)
+        # check various module variables
+        assert(GLOBAL.MOD['BaseModule']['_name_'] == 'BaseModule')
+        self.assertListEqual(
+            GLOBAL.MOD['BaseModule']['_imp_']['ConflictSeq'],
+            ['ImportModule1', 'ImportModule2'])
+        self.assertDictEqual(
+            GLOBAL.MOD['BaseModule']['_imports_'][0],
+            {'name': 'ImportModule1',
+             'obj': ['ConflictSeq', 'Imp1Int', 'Imp1Str'],
+             'oid': [],
+             'oidstr': '',
+             'with': None})
+        self.assertListEqual(GLOBAL.MOD['ImportModule2']['_imports_'], [])
         # generate JSON dependency graph
         generate_modules(JSONDepGraphGenerator, './test_asn_todelete/Imports.json')
         GLOBAL.clear()

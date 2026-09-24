@@ -6695,7 +6695,7 @@ class TIME_UTC(_Time):
     __doc__ = """
     ASN.1 basic type UTCTime object
     
-    single value: Python 7-tuple of int (AA, MM, DD, HH, MM, [SS,] Z),
+    single value: Python 7-tuple of str (AA, MM, DD, HH, MM, [SS,] Z),
         SS is optional, hence 6th element can be None
         Z corresponds to the UTC decay
     
@@ -6720,7 +6720,7 @@ class TIME_GEN(_Time):
     __doc__ = """
     ASN.1 basic type GeneralizedTime object
     
-    single value: Python 8-tuple of int 
+    single value: Python 8-tuple of str
         (AAAA, MM, DD, HH, [MM, [SS, [FFFF,]]], Z),
         MM, SS and FFFF are optional, hence 5th, 6th and 7th element can be None
         Z corresponds to the UTC decay and is optional, hence 8th element 
